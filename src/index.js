@@ -9,11 +9,11 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <>
   <React.StrictMode>
-    <Header/>
     <BrowserRouter>
+    <Header/>
     <Routes>
-    <Route path='mobiles' element={<App title='mobile' />}/>
-    <Route path='audio' element={<App title='audio' />}/>
+    <Route path='mobiles' element={<App title='mobile'/>}/>
+    <Route path='audio' element={<App title='audio'/>}/>
     <Route path="*"
       element={
         <main style={{ padding: "1rem" }}>
