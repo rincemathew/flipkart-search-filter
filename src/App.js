@@ -6,13 +6,27 @@ import axios from 'axios';
 function App(props) {
 var item = props.title === mobile.name ? mobile:audio;
 const [rsData, setRsData] = useState([])
+const [sort, sortData] = useState('')
+
 useEffect(() => {
-  axios.get(item.url).then((resp)=>{
+  axios.get(item.url+sort).then((resp)=>{
+    console.log(item.url+sort)
     console.log(resp.data.results)
     setRsData(resp.data.results)
   })
 
-}, [item])
+}, [item, sort])
+
+function sortList(sortparm, event) {
+  var liElement = document.querySelectorAll('.sort-ul li');
+  for (var i =0; i < liElement.length; i++) {
+    liElement[i].classList.remove('sort-ul-active');
+  }
+  event.currentTarget.classList.add('sort-ul-active');
+  var sort1 = `?ordering=${item[sortparm]}`
+  sortData(sort1)
+  console.log(sort)
+}
 
 
   return (
@@ -26,10 +40,10 @@ useEffect(() => {
         <div className='title'>{item.title}</div>
         <ul className='sort-ul'>
           <li>Sort By</li>
-          <li className='sort-ul-active'>Newest First</li>
-          <li>Oldest First</li>
-          <li>Price - Low to High</li>
-          <li>Price - High to Low</li>
+          <li onClick={(event) => sortList("new", event)} className='sort-ul-active'>Newest First</li>
+          <li onClick={(event) => sortList("old", event)}>Oldest First</li>
+          <li onClick={(event) => sortList("low", event)}>Price - Low to High</li>
+          <li onClick={(event) => sortList("high", event)}>Price - High to Low</li>
         </ul>
         <hr></hr>
         {rsData.map((obj => <div>
