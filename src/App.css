@@ -66,6 +66,11 @@ hr {
   padding: 24px 0 30px 34px;
   display: flex;
   justify-content: center;
+  cursor: pointer;
+}
+
+.list-obj:hover .list-obj-2-div {
+  color: #2874f0;
 }
 
 .list-obj-1 {
@@ -84,7 +89,49 @@ hr {
   padding-left: 25px;
 }
 
+.list-obj-2-div {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.list-obj-2-ul {
+  padding: 0;
+}
+
+.list-obj-2-ul li {
+  list-style: none;
+  font-size: 14px;
+  font-family: Roboto,Arial,sans-serif;
+  line-height: 22px;
+}
+
+.list-obj-2-ul li::before {
+  content: "• ";
+  color: rgb(194, 194, 194);
+}
+
 .list-obj-3 {
   width: 34%;
   padding-left: 25px;
+}
+
+.obj-3-price {
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.list-obj-3 img {
+  max-height: 21px;
+  padding-left: 10px;
+}
+
+.list-obj-3 p:nth-last-of-type(2){
+  font-size: 12px;
+  font-weight: 400;
+}
+
+.list-obj-3 p:nth-last-of-type(1){
+  color: rgb(38, 165, 65);
+  font-size: 12px;
+  font-weight: 700;
 }
