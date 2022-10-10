@@ -14,6 +14,12 @@
   height: fit-content;
 }
 
+.head-tag {
+  font-size: 18px;
+  font-weight: 500;
+}
+
+
 .list-item {
   background-color:#fff ;
   color: #212121;

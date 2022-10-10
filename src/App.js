@@ -10,7 +10,7 @@ const [filter, sortFilter] = useState('')
 
 useEffect(() => {
   axios.get(mobile.url+sort+filter).then((resp)=>{
-    console.log(mobile.url+sort)
+    console.log(mobile.url+sort+filter)
     console.log(resp.data.results)
     setRsData(resp.data.results)
   })
@@ -27,17 +27,25 @@ function sortList(sortparm, event) {
   console.log(sort)
 }
 
-function checkboxChange(e ,name, id, query) {
+function checkboxChange(e ,name, id, query, qValue) {
   // console.log(e.target.checked)
-  if (document.getElementById(id).checked) {
-    sortFilter(filter+query)
-    console.log(filter)
-    console.log('checked')
-  } else {
-    // console.log(a.replace(" world", ""))
-    console.log('filter'+filter)
-    console.log('unchecked')
-  }
+    if (document.getElementById(id).checked) {
+      if(filter.includes(query)) {
+        console.log('1')
+        sortFilter(filter.replace(query,query+qValue))
+        // console.log(filter)
+      }else {
+        console.log('2')
+        sortFilter(filter + query + qValue)
+        // console.log(filter)
+      }
+    } else {
+      console.log('3')
+      sortFilter(filter.replace(qValue,''))
+      // console.log(a.replace(" world", ""))
+      // console.log(filter)
+      // console.log('unchecked')
+    }
 }
 
 
@@ -45,20 +53,21 @@ function checkboxChange(e ,name, id, query) {
     <div className="app">
       {/* filter field */}
       <div className='filter'>
-        <div>
+        <div className='head-tag'>
           Filters
         </div>
+        <hr></hr>
         <div>
 
         </div>
         <div>
           {mobile.filter.map((obj) =><div>
               <div>{obj.nameObj}</div>
-              <div>{obj.checkItem.map((object)=><div>
-                <label htmlFor=""><input onChange={(e)=>{checkboxChange(e,object.value1,object.value2,object.value3)}} type="checkbox" id={object.value2}/>{object.value1}</label>
-                
+              <div>{obj.checkItem.map((object, index)=><div>
+                <label htmlFor=""><input onChange={(e)=>{checkboxChange(e,object.nameobj,object.idobj,object.query,object.qValue)}} type="checkbox" id={object.idobj}/>{object.nameobj}</label>
                 </div>
               )}</div>
+              <hr></hr>
             </div>
           )}
         </div>
