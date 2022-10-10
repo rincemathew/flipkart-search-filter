@@ -8,8 +8,9 @@ function Header() {
       <div className="head">
         <div className="percentage head-item">
           <img src="https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/flipkart-plus_8d85f4.png" alt='img'></img>
-          <div><Link className='head-button' to="/mobiles">Go to mobiles</Link></div>
-          <div><Link className='head-button' to="/audio">Go to Audio(headphone)</Link></div>
+          <div><a className='head-button' target="_blank" href='https://github.com/rincemathew/flipkart-search-filter'>github</a></div>
+          {/* <div><Link className='head-button' to="/mobiles">Go to mobiles</Link></div> */}
+          {/* <div><Link className='head-button' to="/audio">Go to Audio(headphone)</Link></div> */}
         </div>
       </div>
       <div style={{height:'56px'}}></div>

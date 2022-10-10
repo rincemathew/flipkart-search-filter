@@ -19,6 +19,24 @@
   font-weight: 500;
 }
 
+.filterName {
+  font-size: 13px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: .3px;
+  padding: 7px 0;
+}
+
+.range-class {
+  width: 100%;
+}
+
+.filter-item {
+  font-size: 14px;
+  margin: 7px 0;
+  cursor: pointer;
+}
+
 
 .list-item {
   background-color:#fff ;
