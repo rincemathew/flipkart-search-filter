@@ -7,11 +7,11 @@ import Header from './Components/Header/Header';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-  <>
   <React.StrictMode>
     <BrowserRouter>
     <Header/>
-    <Routes>
+    <App/>
+    {/* <Routes>
     <Route path='mobiles' element={<App title='mobile'/>}/>
     <Route path='audio' element={<App title='audio'/>}/>
     <Route path="*"
@@ -21,9 +21,8 @@ root.render(
         </main>
       }
     />
-  </Routes>
+  </Routes> */}
   </BrowserRouter>
   </React.StrictMode>
-  </>
 );
 

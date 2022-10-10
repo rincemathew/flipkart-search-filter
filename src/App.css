@@ -11,6 +11,7 @@
   margin: 8px;
   box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
   width: 20%;
+  height: fit-content;
 }
 
 .list-item {
@@ -20,6 +21,7 @@
   margin: 8px 8px 8px 0;
   box-shadow: 0 1px 1px 0 rgb(0 0 0 / 16%);
   width: 80%;
+  height: fit-content;
 }
 
 .title {
@@ -134,4 +136,9 @@ hr {
   color: rgb(38, 165, 65);
   font-size: 12px;
   font-weight: 700;
+}
+
+.error {
+  text-align: center;
+  padding: 30px 0;
 }
