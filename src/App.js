@@ -10,20 +10,23 @@ const [sort, sortData] = useState('')
 const [filter, sortFilter] = useState('')
 var minValue = 10000;
 var maxValue = 50000;
-// const [minValue, set_minValue] = useState(10000);
-// const [maxValue, set_maxValue] = useState(50000);
 const [price, setPrice] = useState('');
-const [pagination, setPagination] = useState();
+const [pagination, setPagination] = useState('&limit=8&offset=0');
+var paginationNumber = [0,8,16,24]
 
 
 useEffect(() => {
-  axios.get(mobile.url+price+sort+filter).then((resp)=>{
+  axios.get(mobile.url+price+sort+filter+pagination).then((resp)=>{
     console.log(mobile.url+sort+filter)
-    console.log(resp.data.results)
+    // console.log(resp.data.results)?limit=8&offset=8
+    // setPagination(resp.data.count)
+    console.log(resp.data.count)
     setRsData(resp.data.results)
+  }).catch((error)=>{
+    alert('axios error api may not work with your network provider'+error)
   })
 
-}, [sort, filter, price])
+}, [sort, filter, price, pagination])
 
 function sortList(sortparm, event) {
   var liElement = document.querySelectorAll('.sort-ul li');
@@ -32,6 +35,7 @@ function sortList(sortparm, event) {
   }
   event.currentTarget.classList.add('sort-ul-active');
   sortData(`&ordering=${mobile[sortparm]}`)
+  setPagination('&limit=8&offset=0')
   console.log(sort)
 }
 
@@ -41,10 +45,12 @@ function checkboxChange(e ,name, id, query, qValue) {
       if(filter.includes(query)) {
         console.log('1')
         sortFilter(filter.replace(query,query+qValue))
+        setPagination('&limit=8&offset=0')
         // console.log(filter)
       }else {
         console.log('2')
         sortFilter(filter + query + qValue)
+        setPagination('&limit=8&offset=0')
         // console.log(filter)
       }
     } else {
@@ -58,14 +64,22 @@ function checkboxChange(e ,name, id, query, qValue) {
 
 const handleInput = (e) => {
   setPrice(`&mobileGeneral__price__range=${e.minValue},${e.maxValue}`)
+  // setPagination('&limit=8&offset=0')
 	// set_minValue(e.minValue);
-  // console.log(e.minValue)
+  console.log(e.minValue,e.maxValue,'dfdf')
   // console.log(e.maxValue)
 	// set_maxValue(e.maxValue);
 };
 
+function paginationEvent(event,obj,index){
+  console.log(obj + " " + index)
+  window.scrollTo({top: 0, left: 0, behavior: 'smooth'});
+  setPagination(`&limit=8&offset=${obj}`)
+}
+
 
   return (
+    <div>
     <div className="app">
       {/* filter field */}
       <div className="filter">
@@ -73,17 +87,8 @@ const handleInput = (e) => {
         <hr></hr>
         <div>
           <div className="">
-            <MultiRangeSlider
-              min={0}
-              max={60000}
-              step={5000}
-              stepOnly={true}
-              minValue={minValue}
-              maxValue={maxValue}
-              onInput={(e) => {
-                handleInput(e);
-              }}
-            />
+            <MultiRangeSlider min={0} max={60000} step={5000} stepOnly={true} minValue={minValue} maxValue={maxValue}
+              onInput={(e) => {handleInput(e);}}/>
           </div>
         </div>
         <div>
@@ -94,20 +99,8 @@ const handleInput = (e) => {
                 {obj.checkItem.map((object, index) => (
                   <div>
                     <label htmlFor="">
-                      <input
-                        className="filter-item"
-                        onChange={(e) => {
-                          checkboxChange(
-                            e,
-                            object.nameobj,
-                            object.idobj,
-                            object.query,
-                            object.qValue
-                          );
-                        }}
-                        type="checkbox"
-                        id={object.idobj}
-                      />
+                      <input className="filter-item"onChange={(e) => {checkboxChange(e,object.nameobj,object.idobj,object.query,object.qValue);}}
+                        type="checkbox" id={object.idobj}/>
                       {object.nameobj}
                     </label>
                   </div>
@@ -184,6 +177,12 @@ const handleInput = (e) => {
           ))
         )}
       </div>
+    </div>
+    <div className='pagination'>
+      {paginationNumber.map((obj,index)=><div onClick={(event) => paginationEvent(event,obj,index)} className={index==0?'pagination-number pagination-number-selected':'pagination-number'}>
+        {index+1}
+      </div>)}
+    </div>
     </div>
   );
 }
