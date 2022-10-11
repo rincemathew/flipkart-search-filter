@@ -151,7 +151,7 @@ function paginationEvent(event,obj,index){
           <hr></hr>
           {rsData == 0 ? (
             <div className="error">
-              <img src="/error-no-search.png"></img>
+              <img src='https://static-assets-web.flixcart.com/fk-p-linchpin-web/fk-cp-zion/img/error-no-search-results_2353c5.png'></img>
               <h1>Sorry, no results found!</h1>
               <h3 style={{ color: "#808080" }}>
                 Please check the spelling or try searching for something else
