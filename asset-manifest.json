@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/flipkart-search-filter/static/css/main.b1ee895d.css",
+    "main.js": "/flipkart-search-filter/static/js/main.5bae795b.js",
+    "index.html": "/flipkart-search-filter/index.html",
+    "main.b1ee895d.css.map": "/flipkart-search-filter/static/css/main.b1ee895d.css.map",
+    "main.5bae795b.js.map": "/flipkart-search-filter/static/js/main.5bae795b.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.b1ee895d.css",
+    "static/js/main.5bae795b.js"
+  ]
+}
